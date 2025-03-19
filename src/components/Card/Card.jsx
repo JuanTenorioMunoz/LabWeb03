@@ -22,13 +22,18 @@ const Card = () => {
 
     const fetchImage = async () => {
         try {
-            setImage("https://cataas.com/cat")
-            console.log(image + "IMAGEEEe")
-
+            const response = await fetch("https://cataas.com/cat?json=true");
+    
+            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+    
+            const data = await response.json();
+    
+            setImage(data.url);
         } catch (error) {
-            console.error(error)
+            console.error("Error fetching image:", error);
         }
-    }
+    };
+    
 
     const otherImage = () => {
         fetchDesc();
