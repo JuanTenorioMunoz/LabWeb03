@@ -1,49 +1,32 @@
 import { useEffect, useState } from "react";
 import CardImage from "../CardImage/CardImage";
 import CardInfo from "../CardInfo/CardInfo";
+import apiFetching from "../../services/apiFetching";
 
 const Card = () => {
-
     const [image, setImage] = useState("RRRR");
     const [desc, setDesc] = useState("mamaguevo");
 
-    const fetchDesc = async () => {
+    const fetchData = async () =>{
         try {
-            const response = await fetch("https://catfact.ninja/fact")
-            const data = await response.json()
+           const newDesc = await apiFetching.fetchDesc();
+           const newImage = await apiFetching.fetchImage();
 
-            setDesc(data.fact)
-            console.log(desc, "DESC!!!")
+           setDesc(newDesc);
+           setImage(newImage);
 
         } catch (error) {
-            console.error(error)
+            console.error(error);
         }
     }
 
-    const fetchImage = async () => {
-        try {
-            const response = await fetch("https://cataas.com/cat?json=true");
-    
-            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-    
-            const data = await response.json();
-    
-            setImage(data.url);
-        } catch (error) {
-            console.error("Error fetching image:", error);
-        }
-    };
-    
-
     const otherImage = () => {
-        fetchDesc();
-        fetchImage();
+        fetchData();       
         console.log("CLIIII")
     }
 
     useEffect(() => {
-        fetchDesc();
-        fetchImage();
+        fetchData();
     }, [])
 
     return(
