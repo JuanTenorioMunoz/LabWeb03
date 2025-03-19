@@ -3,10 +3,10 @@ const CardInfo = ({info}) => {
     return(
 
     <div className="card-container">
-        <h1>{info}</h1>
-        <p>{desc}</p>
+        <h1>Cat Facts</h1>
+        <p>{info}</p>
     </div>
-    
+
     )
 }
 
