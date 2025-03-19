@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import "./CardImage.css"
 
 const CardImage = ({image,desc}) => {
 
@@ -14,7 +15,7 @@ const CardImage = ({image,desc}) => {
 
     return(
         <div className="card-image-container">
-            <img src={image}></img>
+            <img className="card-image" src={image}></img>
             <p>{shortDesc}</p>
         </div>
     )

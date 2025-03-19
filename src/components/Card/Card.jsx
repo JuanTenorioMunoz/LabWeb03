@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import CardImage from "../CardImage/CardImage";
 import CardInfo from "../CardInfo/CardInfo";
 import apiFetching from "../../services/apiFetching";
+import "./Card.css"
 
 const Card = () => {
     const [image, setImage] = useState("RRRR");
