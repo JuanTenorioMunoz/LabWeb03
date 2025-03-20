@@ -1,3 +1,5 @@
+import "./CardInfo.css"
+
 const CardInfo = ({info}) => {
 
     return(

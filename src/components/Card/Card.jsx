@@ -7,19 +7,25 @@ import "./Card.css"
 const Card = () => {
     const [image, setImage] = useState("RRRR");
     const [desc, setDesc] = useState("mamaguevo");
+    const [loading, setLoading] = useState(true);
 
-    const fetchData = async () =>{
+    const fetchData = async () => {
+
+        setLoading(true); 
+
         try {
-           const newDesc = await apiFetching.fetchDesc();
-           const newImage = await apiFetching.fetchImage();
+            const newDesc = await apiFetching.fetchDesc();
+            const newImage = await apiFetching.fetchImage();
 
-           setDesc(newDesc);
-           setImage(newImage);
-
+            setDesc(newDesc);
+            setImage(newImage);
+            
         } catch (error) {
             console.error(error);
         }
-    }
+
+        setLoading(false);
+    };
 
     const otherImage = () => {
         fetchData();       
@@ -30,15 +36,21 @@ const Card = () => {
         fetchData();
     }, [])
 
-    return(
+    return (
 
-    <div className="card-container">
-        <CardInfo info={desc}></CardInfo>
-        <CardImage image={image} desc={desc}></CardImage>
-        <button onClick={() => otherImage()}>Next Cat fact</button>
-    </div>
+        <div className="card-container">
+            {loading ? (
+                <p>Loading...</p>
+            ) : (
+                <>
+                    <CardInfo info={desc} />
+                    <CardImage image={image} desc={desc} />
+                    <button onClick={otherImage}>Next Cat Fact</button>
+                </>
+            )}
+        </div>
 
-    )
+    );
 }
 
 export default Card;
